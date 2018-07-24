@@ -1,7 +1,7 @@
 <div>
-  <!-- <form action="/users" method="post"> -->
+  <form action="/users" method="post">
 
-  <form action="http://gallereewebapp.s3.amazonaws.com/" method="post" enctype="multipart/form-data">
+  <!-- <form action="http://gallereewebapp.s3.amazonaws.com/" method="post" enctype="multipart/form-data"> -->
 
     <legend>New User</legend>
 
@@ -14,6 +14,9 @@
       <label for="user-password">Password</label>
       <input type="text" name="password" class="form-control" id="user-password" placeholder="Password">
     </div>
+
+    <input type="file" name="photos">
+
 
     <div class="text-center">
       <button type="submit" class="btn btn-primary">Submit</button>
