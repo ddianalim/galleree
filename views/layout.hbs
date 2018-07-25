@@ -11,15 +11,20 @@
   <body>
     <nav class="navbar">
       <div class="navbar-brand">
-        Galleree
+        <a class="navbar-brand" href="../">Galleree</a>
       </div>
 
       <div class="navbar-text">
-        login/logout
+        {{# if currentUserId}}
+          <a class="nav-link" href="/logout">Log Out</a>
+        {{else}}
+          <a class="nav-link" href="/login">Log In</a>
+        {{/if}}
       </div>
     </nav>
-      <main>
-        {{{body}}}
-      </main>
+
+    <main>
+      {{{body}}}
+    </main>
   </body>
 </html>
