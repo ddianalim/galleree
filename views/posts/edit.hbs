@@ -1,0 +1,19 @@
+<div>
+  <form action="/posts/{{post.id}}" method="post">
+    <legend>Edit Post</legend>
+
+    <div class="form-group">
+      <label for="post-title">Title</label>
+      <input type="text" name="title" class="form-control" id="post-title" value="{{post.title}}">
+    </div>
+
+    <div class="form-group">
+      <label for="post-description">Description</label>
+      <textarea name="description" class="form-control" id="post-description">{{post.description}}</textarea>
+    </div>
+
+    <div class="text-right">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div>
