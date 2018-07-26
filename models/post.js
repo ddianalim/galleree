@@ -6,7 +6,7 @@ const PostSchema = new Schema({
   // image: { type: Img, required: true },
   // image: { data: Buffer, contentType: String },
   description: { type: String, required: true },
-  // users: [{ type: Schema.Types.ObjectId, ref: 'User'}],
+  users: [{ type: Schema.Types.ObjectId, ref: 'User'}],
 });
 
 module.exports = mongoose.model('Post', PostSchema);

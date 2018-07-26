@@ -1,13 +1,13 @@
 const express = require('express');
 const auth = require('./helpers/auth');
 const Post = require('../models/post');
+const User = require('../models/user');
 
 const router = express.Router();
 
-
 // Posts index
 router.get('/', auth.requireLogin, (req, res, next) => {
-  Post.find({}, 'title', function(err, posts) {
+  Post.find({users: res.locals.currentUserId}, 'title', function(err, posts) {
     if(err) {
       console.error(err);
     } else {
@@ -16,18 +16,13 @@ router.get('/', auth.requireLogin, (req, res, next) => {
   });
 });
 
-// router.get('/', auth.requireLogin, (req, res, next) => {
-//   Trip.find({users: res.locals.currentUserId}).populate('events').sort({ date: -1}).exec(function(err, trips) {
-//     if (err) {
-//       console.error(err);
-//     }
-//     res.render('trips/index', { trips: trips, events: events });
-//   });
-// });
-
 // Posts new
-router.get('/new', auth.requireLogin, (req, res, next) => {
-  res.render('posts/new');
+router.get('/new', auth.requireLogin, (req, res, next) =>{
+  User.findById(req.params.userId, function(err, post) { //TODO: User or Post??
+    if(err) { console.error(err);}
+
+    res.render('posts/new');
+  });
 });
 
 // Posts show
@@ -39,14 +34,28 @@ router.get('/:id', auth.requireLogin, (req, res, next) => {
   });
 });
 
+// Posts edit
+router.get('/:id/edit', auth.requireLogin, (req, res, next) => {
+  Post.findById(req.params.id, function(err, post) {
+    if (err) { console.error(err); }
+
+    res.render('posts/edit', { post: post });
+  });
+});
+
 // Posts update
 router.post('/:id', auth.requireLogin, (req, res, next) => {
-  // TODO
+  Post.findByIdAndUpdate(req.params.id, req.body, function(err, post) {
+    if(err) { console.error(err) };
+    res.redirect('/posts/' + req.params.id);
+  });
 });
 
 // Posts create
 router.post('/', auth.requireLogin, (req, res, next) => {
   let post = new Post(req.body);
+
+  post.users.push(req.session.userId);
 
   post.save(function(err, post) {
     if(err) { console.error(err) };
