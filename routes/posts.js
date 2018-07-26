@@ -39,9 +39,22 @@ router.get('/:id', auth.requireLogin, (req, res, next) => {
   });
 });
 
+// Posts edit
+router.get('/:id/edit', auth.requireLogin, (req, res, next) => {
+  Post.findById(req.params.id, function(err, post) {
+    if(err) { console.error(err) };
+
+    res.render('posts/edit', { post: post });
+  });
+});
+
 // Posts update
 router.post('/:id', auth.requireLogin, (req, res, next) => {
-  // TODO
+  Post.findByIdAndUpdate(req.params.id, req.body, function(err, post) {
+    if(err) { console.error(err) };
+
+    res.redirect('/posts/' + req.params.id);
+  });
 });
 
 // Posts create
