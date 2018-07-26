@@ -43,7 +43,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-// //Database set up //*********TODO: figure out if this works?? mlab vs. s3.
 const mongoose = require('mongoose');
 const mongoURI = 'mongodb://galleree-admin:G4lleree@ds137687.mlab.com:37687/galleree_webapp';
 

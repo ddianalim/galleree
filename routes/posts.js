@@ -18,7 +18,7 @@ router.get('/', auth.requireLogin, (req, res, next) => {
 
 // Posts new
 router.get('/new', auth.requireLogin, (req, res, next) =>{
-  User.findById(req.params.userId, function(err, post) { //TODO: User or Post??
+  User.findById(req.params.userId, function(err, post) {
     if(err) { console.error(err);}
 
     res.render('posts/new');
