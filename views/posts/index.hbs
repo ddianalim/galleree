@@ -3,8 +3,15 @@
 </div>
 
 <div>
+  <a href="../posts/new">New Post</a>
+</div>
+
+<div class="container">
     {{#each posts as |post|}}
-        <a href="/posts/{{post.id}}">{{post.title}}</a>
+      <div class="post">
+        <h2>{{post.title}}</h2>
         <p>{{post.description}}</p>
+        <a href="/posts/{{post.id}}">Read More</a>
+      </div>
     {{/each}}
 <div>
