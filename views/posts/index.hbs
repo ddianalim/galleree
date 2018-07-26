@@ -1,0 +1,16 @@
+<div>
+  All Posts
+</div>
+
+<div>
+  <ul>
+    {{#each posts as |post|}}
+      <li>
+        {{this.title}}
+      </li>
+      <li>
+        {{this.description}}
+      </li>
+    {{/each}}
+  </ul>
+<div>

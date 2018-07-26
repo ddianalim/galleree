@@ -1,18 +1,29 @@
 const express = require('express');
+const auth = require('./helpers/auth');
+const Post = require('../models/post');
+
 const router = express.Router();
 
-const auth = require('./helpers/auth');
-const Room = require('../models/post');
 
 // Posts index
-router.get('/', auth.requireLogin, (req, res, next) => {
-  Post.find({users: res.locals.currentUserId}).populate('posts').exec(function(err, posts) {
-    if (err) {
+router.get('/', (req, res, next) => {
+  Post.find({}, 'title', function(err, posts) {
+    if(err) {
       console.error(err);
+    } else {
+      res.render('posts/index', { posts: posts });
     }
-    res.render('posts/index', { trips: trips, events: events });
   });
 });
+
+// router.get('/', auth.requireLogin, (req, res, next) => {
+//   Trip.find({users: res.locals.currentUserId}).populate('events').sort({ date: -1}).exec(function(err, trips) {
+//     if (err) {
+//       console.error(err);
+//     }
+//     res.render('trips/index', { trips: trips, events: events });
+//   });
+// });
 
 // Posts new
 router.get('/new', auth.requireLogin, (req, res, next) => {
@@ -31,7 +42,13 @@ router.post('/:id', auth.requireLogin, (req, res, next) => {
 
 // Posts create
 router.post('/', auth.requireLogin, (req, res, next) => {
-  // TODO
+  let post = new Post(req.body);
+
+  post.save(function(err, post) {
+    if(err) { console.error(err) };
+
+    return res.redirect('/posts');
+  });
 });
 
 module.exports = router;
