@@ -6,24 +6,24 @@ const router = express.Router();
 
 
 // Posts index
-router.get('/', auth.requireLogin, (req, res, next) => {
-  Post.find({}, 'title', function(err, posts) {
-    if(err) {
-      console.error(err);
-    } else {
-      res.render('posts/index', { posts: posts });
-    }
-  });
-});
-
 // router.get('/', auth.requireLogin, (req, res, next) => {
-//   Trip.find({users: res.locals.currentUserId}).populate('events').sort({ date: -1}).exec(function(err, trips) {
-//     if (err) {
+//   Post.find({}, 'title', function(err, posts) {
+//     if(err) {
 //       console.error(err);
+//     } else {
+//       res.render('posts/index', { posts: posts });
 //     }
-//     res.render('trips/index', { trips: trips, events: events });
 //   });
 // });
+
+router.get('/', auth.requireLogin, (req, res, next) => {
+  Post.find({users: res.locals.currentUserId}).sort({ date: -1}).exec(function(err, posts) {
+    if (err) {
+      console.error(err);
+    }
+    res.render('posts/index', { posts: posts });
+  });
+});
 
 // Posts new
 router.get('/new', auth.requireLogin, (req, res, next) => {
