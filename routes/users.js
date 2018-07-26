@@ -20,33 +20,12 @@ router.get('/new', (req, res, next) => {
 })
 
 // Users create
-// router.post('/', (req, res, next) => {
-//   const user = new User(req.body);
-//
-//   user.save(function(err, user) {
-//     if(err) console.log(err);
-//     return res.redirect('/users');
-//   });
-// });
-
 router.post('/', (req, res, next) => {
   const user = new User(req.body);
 
   user.save(function(err, user) {
-    if (err) {
-      console.log(err);
-    }
-    User.authenticate(req.body.username, req.body.password, (err, user) => {
-      if (err || !user) {
-        const next_error = new Error("Username or password incorrect");
-        next_error.status = 401;
-
-        return next(next_error);
-      } else {
-        req.session.userId =  user._id;
-        return res.redirect('/');
-      }
-    });
+    if(err) console.log(err);
+    return res.redirect('/login');
   });
 });
 
