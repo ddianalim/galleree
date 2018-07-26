@@ -14,15 +14,6 @@ router.get('/', auth.requireLogin, (req, res, next) => {
   });
 });
 
-// router.get('/', auth.requireLogin, (req, res, next) => {
-//   User.find({}, 'username', function(err, users) {
-//     if(err) {
-//       res.render('users/new');
-//     }
-//     res.render('users/index');
-//   });
-// });
-
 // Users new
 router.get('/new', (req, res, next) => {
   res.render('users/new');
@@ -45,8 +36,7 @@ router.post('/', (req, res, next) => {
     if (err) {
       console.log(err);
     }
-    User.authenticate(req.body.username,
-    req.body.password, (err, user) => {
+    User.authenticate(req.body.username, req.body.password, (err, user) => {
       if (err || !user) {
         const next_error = new Error("Username or password incorrect");
         next_error.status = 401;

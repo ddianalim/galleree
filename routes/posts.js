@@ -6,16 +6,6 @@ const User = require('../models/user');
 const router = express.Router();
 
 // Posts index
-// router.get('/', auth.requireLogin, (req, res, next) => {
-//   Post.find({}, 'title', function(err, posts) {
-//     if(err) {
-//       console.error(err);
-//     } else {
-//       res.render('posts/index', { posts: posts });
-//     }
-//   });
-// });
-//
 router.get('/', auth.requireLogin, (req, res, next) => {
   Post.find({users: res.locals.currentUserId}, 'title', function(err, posts) {
     if(err) {
@@ -26,20 +16,7 @@ router.get('/', auth.requireLogin, (req, res, next) => {
   });
 });
 
-// router.get('/', auth.requireLogin, (req, res, next) => {
-//   Post.find({users: res.locals.currentUserId}).exec(function(err, posts) {
-//     if (err) {
-//       console.error(err);
-//     }
-//     res.render('posts/index', { posts: posts });
-//   });
-// });
-
 // Posts new
-// router.get('/new', auth.requireLogin, (req, res, next) => {
-//   res.render('posts/new');
-// });
-
 router.get('/new', auth.requireLogin, (req, res, next) =>{
   User.findById(req.params.userId, function(err, post) { //TODO: User or Post??
     if(err) { console.error(err);}
@@ -86,21 +63,5 @@ router.post('/', auth.requireLogin, (req, res, next) => {
     return res.redirect('/posts');
   });
 });
-// router.post('/', auth.requireLogin, (req, res, next) => {
-//   User.findById(req.params.userId, function(err, user) {
-//     if(err) { console.error(err); }
-//
-//     let post = new Post(req.body);
-//     // post.user = user;
-//
-//     post.save(function(err, post) {
-//       if(err) { console.error(err) };
-//       // console.log(post.date)
-//       // return res.redirect(`/post/${post._id}`);
-//       return res.redirect('/posts');
-//     });
-//   });
-// });
-
 
 module.exports = router;

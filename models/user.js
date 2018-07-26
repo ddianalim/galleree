@@ -5,7 +5,6 @@ const bcrypt = require('bcrypt');
 const UserSchema = new Schema({
   username: { type: String, required: true },
   password: { type: String, required: true }
-  // posts: { type: Schema.Types.ObjectId } //TODO: is this actually needed?!??!
 });
 
 UserSchema.pre('save', function(next) {
