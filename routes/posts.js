@@ -6,7 +6,7 @@ const router = express.Router();
 
 
 // Posts index
-router.get('/', (req, res, next) => {
+router.get('/', auth.requireLogin, (req, res, next) => {
   Post.find({}, 'title', function(err, posts) {
     if(err) {
       console.error(err);
@@ -32,7 +32,11 @@ router.get('/new', auth.requireLogin, (req, res, next) => {
 
 // Posts show
 router.get('/:id', auth.requireLogin, (req, res, next) => {
-  // TODO
+  Post.findById(req.params.id, function(err, post) {
+    if(err) { console.error(err) };
+
+    res.render('posts/show', { post: post });
+  });
 });
 
 // Posts update
