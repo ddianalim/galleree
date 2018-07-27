@@ -21,8 +21,20 @@ form {
   align-items: center;
 }
 
-.post-controls {
+.container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px
+}
+
+.post {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+body {
+  font-family: Georgia, serif;
 }
