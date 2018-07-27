@@ -7,6 +7,7 @@ const PostSchema = new Schema({
   // image: { data: Buffer, contentType: String },
   description: { type: String, required: true },
   users: [{ type: Schema.Types.ObjectId, ref: 'User'}],
+  date: { type: Date, default: Date.now },
 });
 
 module.exports = mongoose.model('Post', PostSchema);

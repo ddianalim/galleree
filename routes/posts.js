@@ -7,7 +7,7 @@ const router = express.Router();
 
 // Posts index
 router.get('/', auth.requireLogin, (req, res, next) => {
-  Post.find({users: res.locals.currentUserId}, function(err, posts) {
+  Post.find({users: res.locals.currentUserId}).sort({ date: -1 }).exec(function(err, posts) {
     if(err) {
       console.error(err);
     } else {
