@@ -21,6 +21,11 @@ router.get('/login', (req, res, next) => {
   res.render('login');
 });
 
+//TODO: upload
+router.get('/upload', (req, res, next) => {
+  res.render('upload');
+});
+
 // POST login
 router.post('/login', (req, res, next) => {
   User.authenticate(req.body.username, req.body.password, (err, user) => {
