@@ -30,8 +30,11 @@ form {
 .post {
   display: flex;
   flex-direction: column;
-  /* background-color: red; */
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+body {
+  font-family: Georgia, serif;
 }
