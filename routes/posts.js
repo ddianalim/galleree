@@ -2,6 +2,7 @@ const express = require('express');
 const auth = require('./helpers/auth');
 const Post = require('../models/post');
 const User = require('../models/user');
+const cloudinary = require('cloudinary');
 
 const router = express.Router();
 
@@ -56,7 +57,7 @@ router.post('/', auth.requireLogin, (req, res, next) => {
   let post = new Post(req.body);
 
   post.users.push(req.session.userId);
-  // post.imageUrl = cloudinary.url("sample.jpg");
+  post.imageUrl = cloudinary.url(post.imageName);
 
   post.save(function(err, post) {
     if(err) { console.error(err) };
