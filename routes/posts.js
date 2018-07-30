@@ -57,7 +57,7 @@ router.post('/', auth.requireLogin, (req, res, next) => {
   let post = new Post(req.body);
 
   post.users.push(req.session.userId);
-  post.imageUrl = cloudinary.url(post.imageName);
+  // post.imageUrl = cloudinary.url(post.imageName);
 
   post.save(function(err, post) {
     if(err) { console.error(err) };
