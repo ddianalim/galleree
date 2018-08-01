@@ -8,10 +8,6 @@ const Upload = require('s3-uploader');
 
 const router = express.Router();
 const storage = multer.diskStorage({
-  // Removed so we don't save on server-side
-  // destination: function (req, file, cb) {
-  //   cb(null, 'uploads/');
-  // }
   filename: function (req, file, cb) {
       console.log(file)
       let extArray = file.mimetype.split("/");
@@ -67,13 +63,10 @@ router.get('/', auth.requireLogin, (req, res, next) => {
 router.post('/', upload.single('picUrl'), (req, res) => {
     let post = new Post(req.body);
     post.users.push(req.session.userId);
-    console.log("Pushed user")
 
     console.log(req.file)
     if (req.file) {
-          console.log("entered if")
           client.upload(req.file.path, {}, function (err, versions, meta) {
-            console.log("client.upload thing")
             if (err) {
                 console.log("Error after uploading - ", err)
                 return res.status(400).send({ err: err });
@@ -95,7 +88,6 @@ router.post('/', upload.single('picUrl'), (req, res) => {
         });
     }
 });
-
 
 // Posts new
 router.get('/new', auth.requireLogin, (req, res, next) =>{
