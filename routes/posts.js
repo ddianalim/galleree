@@ -3,7 +3,6 @@ const auth = require('./helpers/auth');
 const Post = require('../models/post');
 const User = require('../models/user');
 var multer = require('multer');
-var multerS3 = require('multer-s3');
 
 const router = express.Router();
 
@@ -23,13 +22,13 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 const Upload = require('s3-uploader');
 
-let client = new Upload('gallereewebapp', {
+let client = new Upload('', {
   aws: {
-    path: '/',
+    path: 'folder/',
     region: 'us-west-1',
     acl: 'public-read',
-    accessKeyId: 'AKIAJ2AB7RJ5NUIQXNAQ',
-    secretAccessKey: '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'
+    accessKeyId: '',
+    secretAccessKey: ''
   },
   cleanup: {
     versions: true,
@@ -96,20 +95,32 @@ router.post('/:id', auth.requireLogin, (req, res, next) => {
 //   });
 // });
 
-router.post('/', upload.single('picUrl'), (req, res) => {
+router.post('/', auth.requireLogin, upload.single('picUrl'), (req, res) => {
     let post = new Post(req.body);
     post.users.push(req.session.userId);
+    console.log("Pushed user")
 
     let imageArray = ['picThumb', 'picUrl', 'picSquare', 'picMobile'];
     if (req.file) {
+          console.log("entered if")
           client.upload(req.file.path, {}, function (err, versions, meta) {
             if (err) {
                 return res.status(400).send({ err: err });
             }
             // Iterate through imageArray and add them to respective columns
             for(let i = 0; i < imageArray.length; i++){
-                newPost[imageArray[i]] = versions[i].url;
+                post[imageArray[i]] = versions[i].url;
             }
+
+              post.save(function(err, post) {
+                if(err) { console.error(err) };
+
+                return res.redirect('/posts');
+              });
+            // model.Post.create(post).then(() => {
+            //   req.flash('success', 'Post created');
+            //   res.redirect('/posts');
+            // });
         });
     }
 });
