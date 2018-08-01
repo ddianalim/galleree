@@ -3,7 +3,51 @@ const auth = require('./helpers/auth');
 const Post = require('../models/post');
 const User = require('../models/user');
 
+const multer = require('multer');
+const Upload = require('s3-uploader');
+
 const router = express.Router();
+const storage = multer.diskStorage({
+  filename: function (req, file, cb) {
+      console.log(file)
+      let extArray = file.mimetype.split("/");
+      let ext = extArray[extArray.length - 1];
+      cb(null, Date.now() + "." + ext);
+  }
+});
+
+const upload = multer({ storage });
+
+let client = new Upload(process.env.S3_BUCKET, {
+  aws: {
+    path: 'folder/',
+    region: process.env.S3_REGION,
+    acl: 'public-read',
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+  },
+  cleanup: {
+    original: true,
+    versions: true
+  },
+  versions: [{
+    maxWidth: 320,
+    aspect: '1.618:1',
+    suffix: '-thumbnail'
+  },{
+    maxWidth: 1000,
+    aspect: '2.414:1', //silver ratio
+    suffix: '-desktop'
+  },{
+    maxWidth: 320,
+    aspect: '2.414:1', //silver ratio
+    suffix: '-mobile'
+  },{
+    maxWidth: 100,
+    aspect: '1:1',
+    suffix: '-square'
+  }]
+});
 
 // Posts index
 router.get('/', auth.requireLogin, (req, res, next) => {
@@ -14,6 +58,35 @@ router.get('/', auth.requireLogin, (req, res, next) => {
       res.render('posts/index', { posts: posts });
     }
   });
+});
+
+router.post('/', upload.single('picUrl'), (req, res) => {
+    let post = new Post(req.body);
+    post.users.push(req.session.userId);
+
+    console.log(req.file)
+    if (req.file) {
+          client.upload(req.file.path, {}, function (err, versions, meta) {
+            if (err) {
+                console.log("Error after uploading - ", err)
+                return res.status(400).send({ err: err });
+            }
+            console.log(versions)
+            post.picUrl = versions[0].url;
+              Post.create(post).then(() => {
+                console.error("hello hello");
+                return res.redirect('/posts');
+              }).catch((err) => {
+                console.log(err.message);
+              });
+        });
+    }
+    else{
+        Post.create(post).then(() => {
+          console.error("Post created, but image cannot be uploaded");
+          return res.redirect('/posts');
+        });
+    }
 });
 
 // Posts new
@@ -51,17 +124,5 @@ router.post('/:id', auth.requireLogin, (req, res, next) => {
   });
 });
 
-// Posts create
-router.post('/', auth.requireLogin, (req, res, next) => {
-  let post = new Post(req.body);
-
-  post.users.push(req.session.userId);
-
-  post.save(function(err, post) {
-    if(err) { console.error(err) };
-
-    return res.redirect('/posts');
-  });
-});
 
 module.exports = router;

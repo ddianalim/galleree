@@ -5,6 +5,7 @@ const PostSchema = new Schema({
   title: { type: String, required: true },
   // image: { type: Img, required: true },
   // image: { data: Buffer, contentType: String },
+  picUrl: { type: String, required: true },
   description: { type: String, required: true },
   users: [{ type: Schema.Types.ObjectId, ref: 'User'}],
   date: { type: Date, default: Date.now },

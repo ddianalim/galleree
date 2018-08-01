@@ -1,15 +1,22 @@
+if (!process.env.PORT) {
+  require('dotenv').config();
+}
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session');
+// AWS?
+const Upload = require('s3-uploader');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var postsRouter = require('./routes/posts');
 
 var app = express();
+require('dotenv').config();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -44,7 +51,7 @@ app.use(function(err, req, res, next) {
 });
 
 const mongoose = require('mongoose');
-const mongoURI = 'mongodb://galleree-admin:G4lleree@ds137687.mlab.com:37687/galleree_webapp';
+const mongoURI = 'mongodb://' + process.env.MONGODB_ADMIN + ':' + process.env.MONGODB_PASSWORD + '@ds137687.mlab.com:37687/' + process.env.MONGODB_DATABASE;
 
 mongoose.connect(mongoURI)
 mongoose.Promise = global.Promise;
