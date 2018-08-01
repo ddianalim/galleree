@@ -22,13 +22,13 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 const Upload = require('s3-uploader');
 
-let client = new Upload('', {
+let client = new Upload(process.env.S3_BUCKET, {
   aws: {
     path: 'folder/',
-    region: 'us-west-1',
+    region: process.env.S3_REGION,
     acl: 'public-read',
-    accessKeyId: '',
-    secretAccessKey: ''
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
   },
   cleanup: {
     versions: true,
@@ -83,46 +83,48 @@ router.post('/:id', auth.requireLogin, (req, res, next) => {
 });
 
 // Posts create
-// router.post('/', auth.requireLogin, (req, res, next) => {
-//   let post = new Post(req.body);
+router.post('/', auth.requireLogin, (req, res, next) => {
+  let post = new Post(req.body);
+
+  post.users.push(req.session.userId);
+
+  post.save(function(err, post) {
+    if(err) { console.error(err) };
+
+    return res.redirect('/posts');
+  });
+});
+
+// router.post('/', auth.requireLogin, upload.single('picUrl'), (req, res) => {
+//     let post = new Post(req.body);
+//     post.users.push(req.session.userId);
+//     console.log("Pushed user")
 //
-//   post.users.push(req.session.userId);
+//     let imageArray = ['picThumb', 'picUrl', 'picSquare', 'picMobile'];
+//     if (req.file) {
+//           console.log("entered if")
+//           client.upload(req.file.path, {}, function (err, versions, meta) {
+//             if (err) {
+//                 return res.status(400).send({ err: err });
+//             }
+//             // Iterate through imageArray and add them to respective columns
+//             for(let i = 0; i < imageArray.length; i++){
+//                 post[imageArray[i]] = versions[i].url;
+//             }
 //
-//   post.save(function(err, post) {
-//     if(err) { console.error(err) };
+//               post.save(function(err, post) {
+//                 if(err) { console.error(err) };
 //
-//     return res.redirect('/posts');
-//   });
+//                 return res.redirect('/posts');
+//               });
+//             // model.Post.create(post).then(() => {
+//             //   req.flash('success', 'Post created');
+//             //   res.redirect('/posts');
+//             // });
+//         });
+//     }
 // });
 
-router.post('/', auth.requireLogin, upload.single('picUrl'), (req, res) => {
-    let post = new Post(req.body);
-    post.users.push(req.session.userId);
-    console.log("Pushed user")
 
-    let imageArray = ['picThumb', 'picUrl', 'picSquare', 'picMobile'];
-    if (req.file) {
-          console.log("entered if")
-          client.upload(req.file.path, {}, function (err, versions, meta) {
-            if (err) {
-                return res.status(400).send({ err: err });
-            }
-            // Iterate through imageArray and add them to respective columns
-            for(let i = 0; i < imageArray.length; i++){
-                post[imageArray[i]] = versions[i].url;
-            }
-
-              post.save(function(err, post) {
-                if(err) { console.error(err) };
-
-                return res.redirect('/posts');
-              });
-            // model.Post.create(post).then(() => {
-            //   req.flash('success', 'Post created');
-            //   res.redirect('/posts');
-            // });
-        });
-    }
-});
 
 module.exports = router;
