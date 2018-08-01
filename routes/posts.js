@@ -83,47 +83,57 @@ router.post('/:id', auth.requireLogin, (req, res, next) => {
 });
 
 // Posts create
-router.post('/', auth.requireLogin, (req, res, next) => {
-  let post = new Post(req.body);
-
-  post.users.push(req.session.userId);
-
-  post.save(function(err, post) {
-    if(err) { console.error(err) };
-
-    return res.redirect('/posts');
-  });
-});
-
-// router.post('/', auth.requireLogin, upload.single('picUrl'), (req, res) => {
-//     let post = new Post(req.body);
-//     post.users.push(req.session.userId);
-//     console.log("Pushed user")
+// router.post('/', auth.requireLogin, (req, res, next) => {
+//   let post = new Post(req.body);
 //
-//     let imageArray = ['picThumb', 'picUrl', 'picSquare', 'picMobile'];
-//     if (req.file) {
-//           console.log("entered if")
-//           client.upload(req.file.path, {}, function (err, versions, meta) {
-//             if (err) {
-//                 return res.status(400).send({ err: err });
-//             }
-//             // Iterate through imageArray and add them to respective columns
-//             for(let i = 0; i < imageArray.length; i++){
-//                 post[imageArray[i]] = versions[i].url;
-//             }
+//   post.users.push(req.session.userId);
 //
-//               post.save(function(err, post) {
-//                 if(err) { console.error(err) };
+//   post.save(function(err, post) {
+//     if(err) { console.error(err) };
 //
-//                 return res.redirect('/posts');
-//               });
-//             // model.Post.create(post).then(() => {
-//             //   req.flash('success', 'Post created');
-//             //   res.redirect('/posts');
-//             // });
-//         });
-//     }
+//     return res.redirect('/posts');
+//   });
 // });
+
+router.post('/', auth.requireLogin, upload.single('picUrl'), (req, res) => {
+    let post = new Post(req.body);
+    post.users.push(req.session.userId);
+    console.log("Pushed user")
+
+    // let imageArray = ['picUrl'];
+    if (req.file) {
+          console.log("entered if")
+          // using version not versions
+          client.upload(req.file.path, {}, function (err, version, meta) {
+            if (err) {
+                return res.status(400).send({ err: err });
+            }
+            // Iterate through imageArray and add them to respective columns
+            // for(let i = 0; i < imageArray.length; i++){
+            //     post[imageArray[i]] = versions[i].url;
+            // }
+
+            post[picUrl] = version.url
+
+              Post.create(post).then(() => {
+              // post.save(function(err, post) {
+                if(err) { console.error(err) };
+                console.error("hello hello");
+                return res.redirect('/posts');
+              });
+            // model.Post.create(post).then(() => {
+            //   req.flash('success', 'Post created');
+            //   res.redirect('/posts');
+            // });
+        });
+    }
+    else{
+        Post.create(post).then(() => {
+          console.error("Post created, but image cannot be uploaded");
+          return res.redirect('/posts');
+        });
+    }
+});
 
 
 
