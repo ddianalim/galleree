@@ -20,7 +20,7 @@ const upload = multer({ storage });
 
 let client = new Upload(process.env.S3_BUCKET, {
   aws: {
-    path: 'folder/',
+    path: 'images/',
     region: process.env.S3_REGION,
     acl: 'public-read',
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -30,23 +30,7 @@ let client = new Upload(process.env.S3_BUCKET, {
     original: true,
     versions: true
   },
-  versions: [{
-    maxWidth: 320,
-    aspect: '1.618:1',
-    suffix: '-thumbnail'
-  },{
-    maxWidth: 1000,
-    aspect: '2.414:1', //silver ratio
-    suffix: '-desktop'
-  },{
-    maxWidth: 320,
-    aspect: '2.414:1', //silver ratio
-    suffix: '-mobile'
-  },{
-    maxWidth: 100,
-    aspect: '1:1',
-    suffix: '-square'
-  }]
+  versions: [{}]
 });
 
 // Posts index
@@ -71,7 +55,6 @@ router.post('/', upload.single('picUrl'), (req, res) => {
                 console.log("Error after uploading - ", err)
                 return res.status(400).send({ err: err });
             }
-            console.log(versions)
             post.picUrl = versions[0].url;
               Post.create(post).then(() => {
                 console.error("hello hello");
@@ -79,7 +62,7 @@ router.post('/', upload.single('picUrl'), (req, res) => {
               }).catch((err) => {
                 console.log(err.message);
               });
-        });
+          });
     }
     else{
         Post.create(post).then(() => {
@@ -123,6 +106,5 @@ router.post('/:id', auth.requireLogin, (req, res, next) => {
     res.redirect('/posts/' + req.params.id);
   });
 });
-
 
 module.exports = router;
