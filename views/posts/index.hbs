@@ -1,17 +1,20 @@
-<div class="container">
+<div class="page-title">
   <h1>All Posts</h1>
-  <div class="button">
-    <a href="../posts/new">New Post</a>
-  </div>
+    <a class="button" href="../posts/new">New Post</a>
 </div>
 
-<div class="timeline">
-    {{#each posts as |post|}}
-      <div class="post">
-        <h2>{{post.title}}</h2>
-        <img src={{post.picUrl}}>
-        <p>{{post.description}}</p>
-        <a href="/posts/{{post.id}}">Read More</a>
-      </div>
-    {{/each}}
-<div>
+<div class="container">
+  <div class="timeline">
+      {{#each posts as |post|}}
+        <div class="post">
+          <a href="/posts/{{post.id}}">
+            <img src={{post.picUrl}}>
+            <div class="post-text">
+              <h2 class="post-title">{{post.title}}</h2>
+              <p class="post-date">{{post.date}}</p>
+            </div>
+          </a>
+        </div>
+      {{/each}}
+  <div>
+</div>
