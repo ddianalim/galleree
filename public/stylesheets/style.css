@@ -1,15 +1,22 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  font-family: Georgia, serif;
+  /* font-family: Georgia, serif; */
   background-color: #f0f0f0;
 }
 
 a {
   color: #640e27ff;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #222222;
+  text-decoration: none;
 }
 
 form {
   max-width: 20%;
+  text-align: center;
 }
 
 .navbar {
@@ -38,14 +45,24 @@ form {
   border-radius: 10px;
 }
 
+/* .post img {
+  max-height: 10%;
+} */
+
 .welcome {
   padding: 20%;
   background-color: #fefefe;
 }
 
-.button a {
-  /* background-color: #640e27ff; */
-  /* color: white; */
+.button {
+  border: 1px;
+  border-color: #222222;
+  padding: 10px;
+}
+
+.button:hover {
+  color: #fefefe;
+  background-color: #222222;
 }
 
 .container {

@@ -57,7 +57,6 @@ router.post('/', upload.single('picUrl'), (req, res) => {
             }
             post.picUrl = versions[0].url;
               Post.create(post).then(() => {
-                console.error("hello hello");
                 return res.redirect('/posts');
               }).catch((err) => {
                 console.log(err.message);
