@@ -2,6 +2,7 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   font-family: "Helvetica neue";
   color: #333333;
+  background-color: #efefef;
 }
 
 .container {
@@ -58,8 +59,8 @@ a {
   justify-content: space-between;
   align-items: center;
   background-color: #fefefe;
-  padding-bottom: 6px;
-  margin-bottom: 2em;
+  padding-bottom: 5px;
+  margin-bottom: 1em;
   border-bottom: solid #efefef .1em;
 }
 
@@ -185,6 +186,24 @@ label {
 .gridCentered {
     margin-left: auto;
     margin-right: auto;
+}
+
+#back-button {
+  position: fixed;
+  top: 60px;
+  left: 10px;
+  /* color: #333333; */
+  color: #8E8E8E;
+  background-color: transparent;
+  padding: 10px 10px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+#back-button:hover {
+  background-color: #efefef;
 }
 
 /* Extra small devices (phones, 600px and down) */
