@@ -5,6 +5,7 @@ const User = require('../models/user');
 
 const multer = require('multer');
 const Upload = require('s3-uploader');
+var moment = require('moment');
 
 const router = express.Router();
 const storage = multer.diskStorage({
@@ -58,6 +59,7 @@ router.get('/', auth.requireLogin, (req, res, next) => {
 router.post('/', upload.single('picUrl'), (req, res) => {
     let post = new Post(req.body);
     post.users.push(req.session.userId);
+    post.formatted_date = moment(post.date).format('MMMM Do, YYYY');
 
     console.log(req.file)
     if (req.file) {

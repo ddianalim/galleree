@@ -2,9 +2,11 @@
 
   <div class="show-post">
     <img class="show-pic" src={{post.picUrl}}>
-    <h2 class="show-title">{{post.title}}</h2>
-    <p class="show-date">Created on {{post.date}}</p>
-    <p class="show-description">{{post.description}}</p>
+    <div class="show-text">
+      <h2 class="show-title">{{post.title}}</h2>
+      <p class="show-date">{{post.formatted_date}}</p>
+      <p class="show-description">{{post.description}}</p>
+    </div>
   </div>
 
   <div>

@@ -21,16 +21,19 @@
   <div class="grid-centered">
     <div class="timeline">
         {{#each posts as |post|}}
-
           <div class="post">
             <a href="/posts/{{post.id}}">
               <img src={{post.picUrl}}>
               <div class="post-text">
                 <h2 class="post-title">{{post.title}}</h2>
-                <p class="post-date">{{post.date}}</p>
-                <script>
-
-                </script>
+                <p class="post-date">{{post.formatted_date}}</p>
+                <!-- <p id="post-date"></p> -->
+                <!-- <script>
+                  // let formatted_date = moment('{{post.date}}').format('MMMM Do, YYYY');
+                  // console.log(moment('{{post.date}}').format('MMMM Do, YYYY'));
+                  // document.querySelector('.post-date').innerHTML = formatted_date
+                  document.getElementById('post-date').innerHTML = moment('{{post.date}}').format('MMMM Do, YYYY');
+                </script> -->
               </div>
             </a>
           </div>
