@@ -2,7 +2,6 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   font-family: "Helvetica neue";
   color: #333333;
-  background-color: #efefef;
 }
 
 .container {
@@ -50,7 +49,6 @@ button:hover {
 }
 
 a {
-  color: white;
   text-decoration: none;
 }
 
@@ -72,7 +70,7 @@ a {
 .nav-button {
   color: #8E8E8E;
   background-color: transparent;
-  padding: 10px 10px;
+  padding: 10px;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
@@ -128,6 +126,10 @@ a {
 .welcome {
   padding: 15%;
   background-color: #fefefe;
+}
+
+.welcome a {
+  color: #fefefe;
 }
 
 .first-section {
@@ -188,10 +190,7 @@ label {
     margin-right: auto;
 }
 
-#back-button {
-  position: fixed;
-  top: 60px;
-  left: 10px;
+.control-button {
   /* color: #333333; */
   color: #8E8E8E;
   background-color: transparent;
@@ -202,8 +201,81 @@ label {
   border-radius: 20px;
 }
 
-#back-button:hover {
+.control-button:hover {
   background-color: #efefef;
+}
+
+#back-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.25em;
+  position: fixed;
+  top: 50px;
+  left: 10px;
+  padding: 10px;
+}
+
+#settings-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.25em;
+  position: fixed;
+  top: 50px;
+  right: 10px;
+  padding: 10px;
+}
+
+#edit-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
+  position: fixed;
+  top: 100px;
+  right: 0px;
+  padding: 10px;
+}
+
+#delete-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
+  position: fixed;
+  top: 110px;
+  right: 0px;
+  padding: 10px;
+}
+
+#top-arrow {
+  position: fixed;
+  bottom: 50px;
+  right: 10px;
+}
+
+#bottom-arrow {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
+
+.up-arrow .tooltiptext,
+.down-arrow .tooltiptext {
+  visibility: hidden;
+  color: red;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  right: 105%;
+}
+
+.up-arrow:hover .tooltiptext,
+.down-arrow:hover .tooltiptext {
+  visibility: visible;
 }
 
 /* Extra small devices (phones, 600px and down) */
@@ -211,7 +283,10 @@ label {
   .timeline {
     display: flex;
     flex-direction: column;
+  }
 
+  .back-text {
+    visibility: hidden;
   }
 }
 
