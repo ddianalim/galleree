@@ -2,17 +2,41 @@
 
   <div class="show-post">
     <img class="show-pic" src={{post.picUrl}}>
-    <h2>{{post.title}}</h2>
-    <p>{{post.date}}</p>
-    <p>{{post.description}}</p>
+    <h2 class="show-title">{{post.title}}</h2>
+    <p class="show-date">Created on {{post.date}}</p>
+    <p class="show-description">{{post.description}}</p>
   </div>
 
   <div>
-    <a class="button" href="/posts/">Back</a>
+    <a class="button control-button" id="back-button" href="/posts/">
+      <img src="../images/back-arrow.png" width=20px height=20px>
+      <div class="back-text">Back</div>
+    </a>
   </div>
 
   <div>
-    <a class="button" href="/posts/{{post.id}}/edit">Edit</a>
+    <a class="button control-button" id="settings-button" href="#" onclick="toggle_visibility('edit-button'); toggle_visibility('delete-button');">
+      <img src="../images/dots.png" width=20px height=20px>
+    </a>
   </div>
 
+  <script type="text/javascript">
+    function toggle_visibility(id) {
+      var e = document.getElementById(id);
+      if(e.style.display == 'none')
+        e.style.display = 'block';
+      else
+        e.style.display = 'none';
+    }
+  </script>
+
+  <div id="edit-button" style="display: none">
+    <a class="control-button" href="/posts/{{post.id}}/edit">Edit</a>
+  </div>
+
+  <div id="delete-button" style="display: none">
+    <form method="POST" action="/posts/{{post._id}}?_method=DELETE">
+      <button class="control-button" type="submit" Onclick="return confirm('Are you sure you want to delete this project?');">Delete</button>
+    </form>
+ </div>
 </div>

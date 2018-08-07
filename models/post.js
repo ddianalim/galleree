@@ -6,7 +6,7 @@ const PostSchema = new Schema({
   picUrl: { type: String, required: true },
   description: { type: String, required: true },
   users: [{ type: Schema.Types.ObjectId, ref: 'User'}],
-  date: { type: Date, default: Date.now },
+  date: { type: String, created: Date}
 });
 
 module.exports = mongoose.model('Post', PostSchema);

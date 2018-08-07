@@ -33,6 +33,17 @@ let client = new Upload(process.env.S3_BUCKET, {
   versions: [{}]
 });
 
+// Delete Posts
+router.delete('/:id', auth.requireLogin, (req, res, next) => {
+  Post.findByIdAndDelete(req.params.id).then(() => {
+    return res.redirect('/posts');
+  }).catch((err) => {
+    console.log(err.message);
+  });
+
+  console.log(req.params.id);
+})
+
 // Posts index
 router.get('/', auth.requireLogin, (req, res, next) => {
   Post.find({users: res.locals.currentUserId}).sort({ date: -1 }).exec(function(err, posts) {
