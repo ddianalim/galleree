@@ -120,7 +120,7 @@ a {
 }
 
 .post-date {
-  /* padding: 1em; */
+  color: #8E8E8E;
 }
 
 .welcome {
@@ -259,23 +259,6 @@ label {
   position: fixed;
   bottom: 10px;
   right: 10px;
-}
-
-.up-arrow .tooltiptext,
-.down-arrow .tooltiptext {
-  visibility: hidden;
-  color: red;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px;
-  position: absolute;
-  z-index: 1;
-  right: 105%;
-}
-
-.up-arrow:hover .tooltiptext,
-.down-arrow:hover .tooltiptext {
-  visibility: visible;
 }
 
 /* Extra small devices (phones, 600px and down) */
