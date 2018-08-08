@@ -100,6 +100,15 @@ router.get('/:id', auth.requireLogin, (req, res, next) => {
   });
 });
 
+// Posts view (Shareable link)
+router.get('/:id/view', (req, res, next) => {
+  Post.findById(req.params.id, function(err, post) {
+    if(err) { console.error(err) };
+
+    res.render('posts/view', { post: post });
+  });
+});
+
 // Posts edit
 router.get('/:id/edit', auth.requireLogin, (req, res, next) => {
   Post.findById(req.params.id, function(err, post) {
