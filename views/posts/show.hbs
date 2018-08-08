@@ -1,10 +1,13 @@
 <div class="container">
-
   <div class="show-post">
-    <img class="show-pic" src={{post.picUrl}}>
-    <h2 class="show-title">{{post.title}}</h2>
-    <p class="show-date">Created on {{post.date}}</p>
-    <p class="show-description">{{post.description}}</p>
+    <div>
+      <img class="show-pic gridCentered" src={{post.picUrl}}>
+    </div>
+    <div class="show-text">
+      <h2 class="show-title">{{post.title}}</h2>
+      <p class="show-date">{{post.date}}</p>
+      <p class="show-description">{{post.description}}</p>
+    </div>
   </div>
 
   <div>
@@ -20,16 +23,6 @@
     </a>
   </div>
 
-  <script type="text/javascript">
-    function toggle_visibility(id) {
-      var e = document.getElementById(id);
-      if(e.style.display == 'none')
-        e.style.display = 'block';
-      else
-        e.style.display = 'none';
-    }
-  </script>
-
   <div id="edit-button" style="display: none">
     <a class="control-button" href="/posts/{{post.id}}/edit">Edit</a>
   </div>
@@ -40,3 +33,13 @@
     </form>
  </div>
 </div>
+
+<script type="text/javascript">
+  function toggle_visibility(id) {
+    var e = document.getElementById(id);
+    if(e.style.display == 'none')
+      e.style.display = 'block';
+    else
+      e.style.display = 'none';
+  }
+</script>

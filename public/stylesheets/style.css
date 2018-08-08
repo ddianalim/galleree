@@ -25,6 +25,7 @@ button {
     margin: 15px 0px 5px;
     cursor: pointer;
     border-radius: 10px;
+    outline: none;
 }
 
 button:hover {
@@ -91,7 +92,7 @@ a {
   margin: .5em;
   background-color: #fefefe;
   border-radius: 10px;
-  height: 250px;
+  height: 230px;
   width: 236px;
 }
 
@@ -108,19 +109,18 @@ a {
 }
 
 .post-text {
-  max-width: 236px;
-  /* overflow: hidden; */
-  white-space: nowrap;
   color: #333333;
 }
 
 .post-title {
   font-size: 1.25em;
   font-weight: 500;
+  margin: .5em 0 .3em;
 }
 
 .post-date {
   color: #8E8E8E;
+  margin: 0px;
 }
 
 .welcome {
@@ -157,6 +157,10 @@ form {
   padding: .5em;
 }
 
+.form-control {
+  outline: none;
+}
+
 label {
   margin: .2em;
   padding: 0px 10px;
@@ -165,19 +169,43 @@ label {
 .show-post {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   height: 90%;
   width: 75%;
-  align-items: center;
-  background-color: #fefefe;
   border-radius: 10px;
 }
 
 .show-post img {
+  display: flex;
+  justify-content: center;
   align-items: center;
   height: 75%;
   width: 75%;
   object-fit: cover;
+  margin-top: 1em;
+}
+
+.show-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 5px 12.5%;
+}
+
+.show-title {
+  font-size: 1.25em;
+  font-weight: 500;
+  margin: .5em 0 .3em;
+}
+
+.show-date {
+  color: #8E8E8E;
+  margin: 0px;
+}
+
+.show-description {
+  color: #333333;
+  margin: 0px;
 }
 
 .link {
