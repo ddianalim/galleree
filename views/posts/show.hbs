@@ -35,31 +35,20 @@
   </div>
 
   <div id="share-button" style="display: none">
-    <button class="control-button" onclick="toggle_visibility('share-link');">
-      Share
+    <button class="control-button link-button" onclick="toggle_visibility('copied-link'); myFunction();">
+       <img src="../images/link.png" width=20px height=20px>
     </button>
   </div>
 
-  <div class="popup tooltip" id="share-link" style="display: none">
-    <div>
-      <input type="text" value="http://galleree.herokuapp.com/posts/{{post.id}}/view" id="myInput">
-    </div>
-    <div>
-      <button class="link-button" onclick="myFunction(); toggle_visibility('myTooltip'); toggle_visibility(popup);">
-        <span class="tooltiptext" id="myTooltip" style="display: none"></span>
-        <img src="../images/link.png" width=20px height=20px>
-      </button>
-    </div>
+  <div id="copied-link" style="display: none">
+    <input type="text" value="http://galleree.herokuapp.com/posts/{{post.id}}/view" id="shareable-link">
   </div>
 
 <script>
   function myFunction() {
-    var copyText = document.getElementById("myInput");
+    var copyText = document.getElementById("shareable-link");
     copyText.select();
     document.execCommand("copy");
-
-    var tooltip = document.getElementById("myTooltip");
-    tooltip.innerHTML = "Link copied!";
   }
 </script>
 

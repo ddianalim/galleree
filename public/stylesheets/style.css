@@ -298,60 +298,25 @@ label {
   right: 10px;
 }
 
-.popup {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  background-color: #fefefe;
-  border: outset 3px #efefef;
-  border-radius: 10px;
-  position: fixed;
-  top: 145px;
-  right: 100px;
-  height: 50px;
-  width: 200px;
+.link-button {
+  padding-bottom: 5px;
 }
 
-.link-button {
+#copied-link {
+  position: fixed;
+  top: 170px;
+  right: 60px;
   color: #8E8E8E;
   background-color: #efefef;
-  padding: 10px 10px 5px;
+  padding: 10px;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
   border-radius: 20px;
 }
 
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 140px;
-    background-color: #efefef;
-    color: #8E8E8E;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px;
-    position: absolute;
-    z-index: 1;
-    bottom: 150%;
-    left: 50%;
-    margin-left: -75px;
-}
-
-.tooltip .tooltiptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
-}
-
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
+#shareable-link {
+  outline: none;
 }
 
 /* Extra small devices (phones, 600px and down) */
