@@ -18,10 +18,11 @@
   </div>
 
   <div>
-    <a class="button control-button" id="settings-button" href="#" onclick="toggle_visibility('edit-button'); toggle_visibility('delete-button');">
+    <a class="button control-button" id="settings-button" href="#" onclick="toggle_visibility('edit-button'); toggle_visibility('delete-button'); toggle_visibility('share-button')">
       <img src="../images/dots.png" width=20px height=20px>
     </a>
   </div>
+</div>
 
   <div id="edit-button" style="display: none">
     <a class="control-button" href="/posts/{{post.id}}/edit">Edit</a>
@@ -31,8 +32,25 @@
     <form method="POST" action="/posts/{{post._id}}?_method=DELETE">
       <button class="control-button" type="submit" Onclick="return confirm('Are you sure you want to delete this project?');">Delete</button>
     </form>
- </div>
-</div>
+  </div>
+
+  <div id="share-button" style="display: none">
+    <button class="control-button link-button" onclick="toggle_visibility('copied-link'); myFunction();">
+       <img src="../images/link.png" width=20px height=20px>
+    </button>
+  </div>
+
+  <div id="copied-link" style="display: none">
+    <input type="text" value="http://galleree.herokuapp.com/posts/{{post.id}}/view" id="shareable-link">
+  </div>
+
+<script>
+  function myFunction() {
+    var copyText = document.getElementById("shareable-link");
+    copyText.select();
+    document.execCommand("copy");
+  }
+</script>
 
 <script type="text/javascript">
   function toggle_visibility(id) {
