@@ -131,8 +131,30 @@ a {
 }
 
 .welcome {
-  padding: 15%;
-  background-color: #fefefe;
+  margin-top: -1em;
+  height: 100vh;
+  width: 100vw;
+  background-image: url("../images/background.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 0vw 100vh rgba(3, 3, 3, 0.3) inset;
+
+}
+
+.welcome-title {
+  font-size: 3em;
+  color: #fefefe;
+  font-weight: normal;
+  /* filter: drop-shadow(.05em .05em #333333); */
+}
+
+.welcome-text {
+  margin: 20% 10%;
+}
+
+.welcome-button {
+  margin: 0px;
 }
 
 .welcome a {
