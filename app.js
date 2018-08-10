@@ -8,7 +8,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session');
-var methodOverride = require('method-override')
+var methodOverride = require('method-override');
 
 // AWS?
 const Upload = require('s3-uploader');
