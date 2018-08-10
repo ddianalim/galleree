@@ -144,12 +144,16 @@ a {
 
 .welcome-title {
   font-size: 3em;
-  color: #fefefe;
   font-weight: normal;
 }
 
+/* .welcome-tagline {
+  font-size: 2em;
+} */
+
 .welcome-text {
   margin: 20% 10%;
+  color: #fefefe;
 }
 
 .welcome-button {
