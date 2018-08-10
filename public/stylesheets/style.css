@@ -147,6 +147,7 @@ a {
   height: 90vh;
   width: 100vw;
   background-image: url("../images/background.jpg");
+  background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -190,7 +191,7 @@ a {
 .about-tagline {
   margin: 1em 1em 2em;
   font-size: 1.25em;
-  color: #8e8e8e;
+  color: #333333;
 }
 
 .steps {
@@ -254,9 +255,16 @@ a {
   border-radius: 10px;
 }
 
+.reasons-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
 .reasons-list li {
   color: #333333;
-  margin: 1em;
+  margin: .5em;
   font-size: 1.25em;
 }
 
@@ -464,6 +472,18 @@ textarea {
 
 #shareable-link {
   outline: none;
+}
+
+.footer {
+  background-color: #640e27ff;
+  color: #fefefe;
+  height: 80px;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: -1em;
 }
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
