@@ -65,6 +65,18 @@ a {
 .navbar-brand {
   color: #640e27ff;
   font-size: 1.25em;
+  font-weight: 400;
+}
+
+.navbar-brand img {
+  height: 1.25em;
+  width: 1.25em;
+}
+
+#nav-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .nav-button {
@@ -176,7 +188,7 @@ a {
 }
 
 .about-tagline {
-  margin: 1em;
+  margin: 1em 1em 2em;
   font-size: 1.25em;
   color: #8e8e8e;
 }
@@ -203,8 +215,8 @@ a {
 }
 
 .step-img {
-  height: 150px;
-  width: 150px;
+  height: 100px;
+  padding-top: 1em;
 }
 
 .step-title {
@@ -246,6 +258,12 @@ a {
   color: #333333;
   margin: 1em;
   font-size: 1.25em;
+}
+
+.reasons-title {
+  color: #640e27ff;
+  font-weight: 500;
+  font-size: 2em;
 }
 
 .post-index {
