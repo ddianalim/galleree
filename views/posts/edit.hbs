@@ -4,18 +4,18 @@
 
     <div class="form-group">
       <label for="post-date">Date</label>
-      <input type="date" name="date" class="form-control" id="post-date" value="{{post.date}}" required>
+      <input type="date" name="date" class="input-text" id="post-date" required>
       <span class="validity"></span>
     </div>
 
     <div class="form-group">
       <label for="post-title">Title</label>
-      <input type="text" name="title" class="form-control" id="post-title" value="{{post.title}}">
+      <input type="text" name="title" class="input-text" id="post-title" value="{{post.title}}">
     </div>
 
     <div class="form-group">
       <label for="post-description">Description</label>
-      <textarea name="description" class="form-control" id="post-description">{{post.description}}</textarea>
+      <textarea name="description" class="input-text" id="post-description">{{post.description}}</textarea>
     </div>
 
     <div class="text-right">
@@ -26,3 +26,13 @@
     <p><a class="link" href="../{{post.id}}">Cancel</a></p>
   </div>
 </div>
+
+<script>
+  var date = new Date("{{post.date}}");
+  var month = date.getUTCMonth()+1;
+  var day = date.getUTCDate();
+  var year = date.getUTCFullYear();
+
+  var formatted_date = month+"/"+day+"/"+year;
+  document.getElementById("post-date").value = formatted_date;
+</script>

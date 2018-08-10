@@ -139,17 +139,12 @@ a {
   background-repeat: no-repeat;
   background-size: cover;
   box-shadow: 0vw 100vh rgba(3, 3, 3, 0.3) inset;
-
 }
 
 .welcome-title {
   font-size: 3em;
   font-weight: normal;
 }
-
-/* .welcome-tagline {
-  font-size: 2em;
-} */
 
 .welcome-text {
   margin: 20% 10%;
@@ -189,13 +184,25 @@ form {
   padding: .5em;
 }
 
-.form-control {
+.input-text {
+  border: 1px #8E8E8E solid;
+  border-radius: 10px;
+  padding: 1em;
   outline: none;
 }
 
 label {
   margin: .2em;
   padding: 0px 10px;
+}
+
+textarea {
+  resize: none;
+}
+
+#post-description {
+  margin: 0px;
+  width: 50vw;
 }
 
 .show-post {
@@ -369,6 +376,7 @@ label {
   .back-text {
     visibility: hidden;
   }
+
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -379,6 +387,11 @@ label {
     grid-gap: 1em;
     height: 100%;
     width: 75%;
+  }
+
+  #post-description {
+    margin: 0px;
+    width: 25vw;
   }
 }
 
