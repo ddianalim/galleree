@@ -185,6 +185,7 @@ a {
   font-size: 2em;
   font-weight: 500;
   color: #640e27ff;
+  display: inline;
 }
 
 .about-tagline {
@@ -234,7 +235,7 @@ a {
   padding: 0px 1em;
 }
 
-.third-section {
+/* .third-section {
   background-color: #efefef;
   width: 100vw;
   display: flex;
@@ -273,7 +274,7 @@ a {
   color: #640e27ff;
   font-weight: 500;
   font-size: 2em;
-}
+} */
 
 .post-index {
   display: flex;
