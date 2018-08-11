@@ -68,17 +68,6 @@ a {
   font-weight: 400;
 }
 
-.navbar-brand img {
-  height: 1.25em;
-  width: 1.25em;
-}
-
-#nav-logo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .nav-button {
   color: #8E8E8E;
   background-color: transparent;
@@ -90,7 +79,7 @@ a {
 }
 
 .username {
-  color: #333333;
+  color: #640e27ff;
 }
 
 .nav-button:hover {
