@@ -247,10 +247,11 @@ a {
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 10%;
   margin: 5em 0px;
+  padding: 1em;
 }
 
 #reasons-img {
-  width: 40vw;
+  width: 350px;
   border-radius: 10px;
 }
 
@@ -505,6 +506,14 @@ textarea {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     grid-column-gap: 1em;
+  }
+  .reasons {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-column-gap: 1em;
+  }
+  .reasons-title {
+    margin-top: 3em; 
   }
 }
 
