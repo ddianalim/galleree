@@ -191,6 +191,7 @@ a {
   margin: 1em 1em 2em;
   font-size: 1.25em;
   color: #333333;
+  text-align: center;
 }
 
 .steps {
@@ -513,7 +514,13 @@ textarea {
     grid-column-gap: 1em;
   }
   .reasons-title {
-    margin-top: 3em; 
+    margin-top: 3em;
+  }
+  .section-title {
+    font-size: 1.5em;
+  }
+  .about-tagline {
+    font-size: 1.2em;
   }
 }
 
